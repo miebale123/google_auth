@@ -8,7 +8,7 @@ import { Component, signal, OnInit } from '@angular/core';
 
       @if (!token()) {
         <a
-          href="https://my-test-flax.vercel.app/google"
+          href="http://localhost:4444/google"
           class="bg-blue-600 px-6 py-3 rounded-xl hover:bg-blue-700 transition-all"
         >
           Sign in with Google
