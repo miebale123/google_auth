@@ -5,21 +5,20 @@ import { Component, signal, OnInit } from '@angular/core';
   template: `
     <div class="min-h-screen flex flex-col items-center justify-center bg-gray-900 text-white">
       <h1 class="text-3xl font-bold mb-6">{{ title() }}</h1>
+      <!-- href="http://localhost:4444/auth/google" -->
 
       @if (!token()) {
-        <a
-          href="https://my-test-uzjd.onrender.com/google"
-          class="bg-blue-600 px-6 py-3 rounded-xl hover:bg-blue-700 transition-all"
-        >
-          Sign in with Google
-        </a>
+      <a [href]="link()" class="bg-blue-600 px-6 py-3 rounded-xl hover:bg-blue-700 transition-all">
+        Sign in with Google
+      </a>
       } @else {
-        <div class="bg-gray-800 p-6 rounded-2xl shadow-xl w-80 text-center">
-          <p class="mb-4 text-green-400 font-semibold">Login Successful ✅</p>
-          <p><strong>Email:</strong> {{ email() }}</p>
-          <p class="mt-2"><strong>Token:</strong></p>
-          <p class="text-xs break-all text-gray-300">{{ token() }}</p>
-        </div>
+      <div class="bg-gray-800 p-6 rounded-2xl shadow-xl w-80 text-center">
+        <p class="mb-4 text-green-400 font-semibold">Login Successful ✅</p>
+        <p>{{ link() }}</p>
+        <p><strong>Email:</strong> {{ email() }}</p>
+        <p class="mt-2"><strong>Token:</strong></p>
+        <p class="text-xs break-all text-gray-300">{{ token() }}</p>
+      </div>
       }
     </div>
   `,
@@ -28,6 +27,7 @@ export class App implements OnInit {
   protected readonly title = signal('my-test-angular');
   protected readonly token = signal<string | null>(null);
   protected readonly email = signal<string | null>(null);
+  link = signal('https://my-test-uzjd.onrender.com/auth/google');
 
   ngOnInit() {
     const params = new URLSearchParams(window.location.search);
